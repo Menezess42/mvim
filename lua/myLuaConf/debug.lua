@@ -24,7 +24,7 @@ require('lze').load {
       local dap = require 'dap'
       local dapui = require 'dapui'
 
-      vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue' })
+      vim.keymap.set('n', '<leader>xd', dap.continue, { desc = 'Debug: Start/Continue' })
       vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
       vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'Debug: Step Over' })
       vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Debug: Step Out' })
