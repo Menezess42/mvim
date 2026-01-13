@@ -2,13 +2,13 @@ require('lze').load {
   {
     "nvim-dap",
     for_cat = { cat = 'debug', default = false }, keys = {
-      { "<F5>", desc = "Debug: Start/Continue" },
-      { "<F1>", desc = "Debug: Step Into" },
-      { "<F2>", desc = "Debug: Step Over" },
-      { "<F3>", desc = "Debug: Step Out" },
+      { "<leader>dd", desc = "Debug: Start/Continue" },
+      { "<leader>di", desc = "Debug: Step Into" },
+      { "<leader>dn", desc = "Debug: Step Over" },
+      { "<leader>doo", desc = "Debug: Step Out" },
       { "<leader>b", desc = "Debug: Toggle Breakpoint" },
       { "<leader>B", desc = "Debug: Set Breakpoint" },
-      { "<F7>", desc = "Debug: See last session result." },
+      { "<leader>ld", desc = "Debug: See last session result." },
     },
     load = (require('nixCatsUtils').isNixCats and function(name)
       vim.cmd.packadd(name)
