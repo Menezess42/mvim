@@ -23,8 +23,15 @@ require('lze').load {
     after = function (plugin)
       local dap = require 'dap'
       local dapui = require 'dapui'
-
-      vim.keymap.set('n', '<leader>xd', dap.continue, { desc = 'Debug: Start/Continue' })
+            -- local nmap = function(keys, func, desc)
+            --     if desc then
+            --         desc = 'DAP: ' .. desc
+            --     end
+            --
+            --     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+            -- end
+            -- nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+      vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue' })
       vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
       vim.keymap.set('n', '<leader>dn', dap.step_over, { desc = 'Debug: Step Over' })
       vim.keymap.set('n', '<leader>do', dap.step_out, { desc = 'Debug: Step Out' })
