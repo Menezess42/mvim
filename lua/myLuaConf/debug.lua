@@ -1,8 +1,7 @@
 require('lze').load {
   {
     "nvim-dap",
-    for_cat = { cat = 'debug', default = false },
-    keys = {
+    for_cat = { cat = 'debug', default = false }, keys = {
       { "<F5>", desc = "Debug: Start/Continue" },
       { "<F1>", desc = "Debug: Step Into" },
       { "<F2>", desc = "Debug: Step Over" },

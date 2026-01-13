@@ -1,22 +1,17 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 vim.wo.relativenumber = true
 vim.wo.number = true
-
 vim.opt.cursorline = true
-
 vim.o.termguicolors = true
-
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
 vim.o.smarttab = true
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
-
+vim.o.shiftwidth = 4      -- ADICIONE ESTA LINHA
+vim.o.smartindent = true  -- ADICIONE ESTA LINHA
 vim.opt.hlsearch = true
-
 vim.opt.cpoptions:append('I')
 vim.o.expandtab = true
 vim.o.breakindent = true

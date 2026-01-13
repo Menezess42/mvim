@@ -46,9 +46,12 @@ return {
       require("blink.cmp").setup({
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
         -- See :h blink-cmp-config-keymap for configuring keymaps
-        keymap =  {
-          preset = 'default',
-        },
+                                keymap = {
+                                        preset = 'super-tab', -- Usa Tab para navegar e aceitar
+                                        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+                                        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+                                        ['<CR>'] = {}, -- Desabilita Enter para aceitar
+                                },
         cmdline = {
           enabled = true,
           completion = {
