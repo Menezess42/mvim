@@ -94,6 +94,7 @@
             nvim-dap-virtual-text
           ];
           go = [ nvim-dap-go ];
+                                        python=[nvim-dap-python];
         };
         lint = with pkgs.vimPlugins; [
           nvim-lint
