@@ -229,6 +229,7 @@
           };
           lspDebugMode = true;
           themer = true;
+                                        debug=true;
           colorscheme = "onedark";
         };
         extra = {
