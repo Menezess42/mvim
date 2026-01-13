@@ -3,9 +3,9 @@ require('lze').load {
     "nvim-dap",
     for_cat = { cat = 'debug', default = false }, keys = {
       { "<leader>dd", desc = "Debug: Start/Continue" },
-      { "<leader>i", desc = "Debug: Step Into" },
-      { "<leader>n", desc = "Debug: Step Over" },
-      { "<leader>o", desc = "Debug: Step Out" },
+      { "~", desc = "Debug: Step Into" },
+      { "´", desc = "Debug: Step Over" },
+      { ";", desc = "Debug: Step Out" },
       { "<leader>b", desc = "Debug: Toggle Breakpoint" },
       { "<leader>B", desc = "Debug: Set Breakpoint" },
       { "<leader>dl", desc = "Debug: See last session result." },
@@ -23,26 +23,43 @@ require('lze').load {
     after = function (plugin)
       local dap = require 'dap'
       local dapui = require 'dapui'
-            -- local nmap = function(keys, func, desc)
-            --     if desc then
-            --         desc = 'DAP: ' .. desc
-            --     end
-            --
-            --     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-            -- end
-            -- nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+
       vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue' })
-      vim.keymap.set('n', '<leader>i', dap.step_into, { desc = 'Debug: Step Into' })
-      vim.keymap.set('n', '<leader>n', dap.step_over, { desc = 'Debug: Step Over' })
-      vim.keymap.set('n', '<leader>o', dap.step_out, { desc = 'Debug: Step Out' })
+      -- vim.keymap.set('n', '~', dap.step_into, { desc = 'Debug: Step Into' })
+      -- vim.keymap.set('n', '´', dap.step_over, { desc = 'Debug: Step Over' })
+      -- vim.keymap.set('n', ';', dap.step_out, { desc = 'Debug: Step Out' })
       vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
       vim.keymap.set('n', '<leader>B', function()
         dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end, { desc = 'Debug: Set Breakpoint' })
-
       vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
 
-      dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  
+  -- Listeners do dapui (já existentes)
+  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+  dap.listeners.before.event_exited['dapui_config'] = dapui.close
+  
+  -- Keybinds temporários (só durante debug ativo)
+  dap.listeners.after.event_initialized['custom_keymaps'] = function()
+    vim.keymap.set('n', '~', dap.step_into, { buffer = 0, desc = 'Debug: Step Into' })
+    vim.keymap.set('n', '´', dap.step_over, { buffer = 0, desc = 'Debug: Step Over' })
+    vim.keymap.set('n', ';', dap.step_out, { buffer = 0, desc = 'Debug: Step Out' })
+  end
+  
+  dap.listeners.after.event_terminated['custom_keymaps'] = function()
+    vim.keymap.del('n', '~', { buffer = 0 })
+    vim.keymap.del('n', '´', { buffer = 0 })
+    vim.keymap.del('n', ';', { buffer = 0 })
+  end
+  
+  dap.listeners.after.event_exited['custom_keymaps'] = function()
+    vim.keymap.del('n', '~', { buffer = 0 })
+    vim.keymap.del('n', '´', { buffer = 0 })
+    vim.keymap.del('n', ';', { buffer = 0 })
+  end
+
+      ------ dap.listeners.after.event_initialized['dapui_config'] = dapui.open
       -- dap.listeners.before.event_terminated['dapui_config'] = dapui.close
       -- dap.listeners.before.event_exited['dapui_config'] = dapui.close
 

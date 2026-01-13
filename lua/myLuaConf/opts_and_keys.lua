@@ -9,8 +9,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.smarttab = true
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
-vim.o.shiftwidth = 4      -- ADICIONE ESTA LINHA
-vim.o.smartindent = true  -- ADICIONE ESTA LINHA
+vim.o.shiftwidth = 4
+vim.o.smartindent = true
 vim.opt.hlsearch = true
 vim.opt.cpoptions:append('I')
 vim.o.expandtab = true
@@ -25,24 +25,24 @@ vim.o.timeoutlen = 300
 vim.opt.scrolloff = 10
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.o.mouse = 'a'
-vim.g.netrw_liststyle=0
-vim.g.netrw_banner=0
+vim.g.netrw_liststyle = 0
+vim.g.netrw_banner = 0
 
 vim.keymap.set("n", "nnp", vim.cmd.NoNeckPain)
 
 vim.api.nvim_create_autocmd("FileType", {
-  desc = "remove formatoptions",
-  callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
-  end,
+    desc = "remove formatoptions",
+    callback = function()
+        vim.opt.formatoptions:remove({ "c", "r", "o" })
+    end,
 })
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Moves Line Down' })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Moves Line Up' })
@@ -69,13 +69,15 @@ vim.keymap.set("n", "<leader><leader>[", "<cmd>b#<CR>", { desc = 'Last buffer' }
 vim.keymap.set("n", "<leader><leader>d", "<cmd>bdelete<CR>", { desc = 'delete buffer' })
 
 
-vim.keymap.set({"v", "x", "n"}, '<leader>c', '"+y', { noremap = true, silent = true, desc = 'Copy to clipboard' })
-vim.keymap.set({"n", "v", "x"}, '<leader>C', '"+yy', { noremap = true, silent = true, desc = 'Copy line to clipboard' })
-vim.keymap.set({"n", "v", "x"}, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
-vim.keymap.set({'n', 'v', 'x'}, '<leader>v', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
-vim.keymap.set('i', '<C-p>', '<C-r><C-p>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
+vim.keymap.set({ "v", "x", "n" }, '<leader>c', '"+y', { noremap = true, silent = true, desc = 'Copy to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>C', '"+yy', { noremap = true, silent = true, desc = 'Copy line to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>v', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
+vim.keymap.set('i', '<C-p>', '<C-r><C-p>+',
+    { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
 
-vim.keymap.set("x", "<leader>P", '"_dP', { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+vim.keymap.set("x", "<leader>P", '"_dP',
+    { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
 vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
