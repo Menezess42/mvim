@@ -1,125 +1,96 @@
 require('lze').load {
-  {
-    "nvim-dap",
-    for_cat = { cat = 'debug', default = false }, keys = {
-      { "<leader>dd", desc = "Debug: Start/Continue" },
-      { "~", desc = "Debug: Step Into" },
-      { "´", desc = "Debug: Step Over" },
-      { ";", desc = "Debug: Step Out" },
-      { "<leader>b", desc = "Debug: Toggle Breakpoint" },
-      { "<leader>B", desc = "Debug: Set Breakpoint" },
-      { "<leader>dl", desc = "Debug: See last session result." },
+    {
+        "nvim-dap",
+        for_cat = { cat = 'debug', default = false }, keys = {
+        { "<leader>dd", desc = "Debug: Start/Continue" },
+        { "<leader>i",  desc = "Debug: Step Into" },
+        { "<leader>n",  desc = "Debug: Step Over" },
+        { "<leader>o",  desc = "Debug: Step Out" },
+        { "<leader>b",  desc = "Debug: Toggle Breakpoint" },
+        { "<leader>B",  desc = "Debug: Set Breakpoint" },
+        { "<leader>dl", desc = "Debug: See last session result." },
     },
-    load = (require('nixCatsUtils').isNixCats and function(name)
-      vim.cmd.packadd(name)
-      vim.cmd.packadd("nvim-dap-ui")
-      vim.cmd.packadd("nvim-dap-virtual-text")
-    end) or function(name)
-      vim.cmd.packadd(name)
-      vim.cmd.packadd("nvim-dap-ui")
-      vim.cmd.packadd("nvim-dap-virtual-text")
-      vim.cmd.packadd("mason-nvim-dap.nvim")
-    end,
-    after = function (plugin)
-      local dap = require 'dap'
-      local dapui = require 'dapui'
-
-      vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue' })
-      -- vim.keymap.set('n', '~', dap.step_into, { desc = 'Debug: Step Into' })
-      -- vim.keymap.set('n', '´', dap.step_over, { desc = 'Debug: Step Over' })
-      -- vim.keymap.set('n', ';', dap.step_out, { desc = 'Debug: Step Out' })
-      vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-      vim.keymap.set('n', '<leader>B', function()
-        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-      end, { desc = 'Debug: Set Breakpoint' })
-      vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
-
-  
-  -- Listeners do dapui (já existentes)
-  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-  dap.listeners.before.event_exited['dapui_config'] = dapui.close
-  
-  -- Keybinds temporários (só durante debug ativo)
-  dap.listeners.after.event_initialized['custom_keymaps'] = function()
-    vim.keymap.set('n', '~', dap.step_into, { buffer = 0, desc = 'Debug: Step Into' })
-    vim.keymap.set('n', '´', dap.step_over, { buffer = 0, desc = 'Debug: Step Over' })
-    vim.keymap.set('n', ';', dap.step_out, { buffer = 0, desc = 'Debug: Step Out' })
-  end
-  
-  dap.listeners.after.event_terminated['custom_keymaps'] = function()
-    vim.keymap.del('n', '~', { buffer = 0 })
-    vim.keymap.del('n', '´', { buffer = 0 })
-    vim.keymap.del('n', ';', { buffer = 0 })
-  end
-  
-  dap.listeners.after.event_exited['custom_keymaps'] = function()
-    vim.keymap.del('n', '~', { buffer = 0 })
-    vim.keymap.del('n', '´', { buffer = 0 })
-    vim.keymap.del('n', ';', { buffer = 0 })
-  end
-
-      ------ dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-      -- dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-      -- dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
-      dapui.setup {
-        icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-        controls = {
-          icons = {
-            pause = '⏸',
-            play = '▶',
-            step_into = '⏎',
-            step_over = '⏭',
-            step_out = '⏮',
-            step_back = 'b',
-            run_last = '▶▶',
-            terminate = '⏹',
-            disconnect = '⏏',
-          },
-        },
-      }
-
-      require("nvim-dap-virtual-text").setup {
-        enabled = true,
-        enabled_commands = true,
-        highlight_changed_variables = true,
-        highlight_new_as_changed = false,
-        show_stop_reason = true,
-        commented = false,
-        only_first_definition = true,
-        all_references = false,
-        clear_on_continue = false,
-        display_callback = function(variable, buf, stackframe, node, options)
-          if options.virt_text_pos == 'inline' then
-            return ' = ' .. variable.value
-          else
-            return variable.name .. ' = ' .. variable.value
-          end
+        load = (require('nixCatsUtils').isNixCats and function(name)
+            vim.cmd.packadd(name)
+            vim.cmd.packadd("nvim-dap-ui")
+            vim.cmd.packadd("nvim-dap-virtual-text")
+        end) or function(name)
+            vim.cmd.packadd(name)
+            vim.cmd.packadd("nvim-dap-ui")
+            vim.cmd.packadd("nvim-dap-virtual-text")
+            vim.cmd.packadd("mason-nvim-dap.nvim")
         end,
-        virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+        after = function(plugin)
+            local dap = require 'dap'
+            local dapui = require 'dapui'
+            vim.keymap.set('n', '<leader>dd', dap.continue, { desc = 'Debug: Start/Continue' })
+            vim.keymap.set('n', '<leader>i', dap.step_into, { desc = 'Debug: Step Into' })
+            vim.keymap.set('n', '<leader>n', dap.step_over, { desc = 'Debug: Step Over' })
+            vim.keymap.set('n', '<leader>o', dap.step_out, { desc = 'Debug: Step Out' })
+            vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+            vim.keymap.set('n', '<leader>B', function()
+                dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+            end, { desc = 'Debug: Set Breakpoint' })
 
-        all_frames = false,
-        virt_lines = false,
-        virt_text_win_col = nil
-      }
+            vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
 
-    end,
-  },
-  {
-    "nvim-dap-go",
-    for_cat = { cat = 'debug.go', default = false },
-    on_plugin = { "nvim-dap", },
-    after = function(plugin)
-      require("dap-go").setup()
-    end,
-  },
-        {
-                "nvim-dap-python",
-                for_cat = { cat = 'debug.python', default = false },
-                on_plugin = { "nvim-dap", },
-                after = function(plugin)
-                        require("dap-python").setup("python")
+            dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+
+            dapui.setup {
+                icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+                controls = {
+                    icons = {
+                        pause = '⏸',
+                        play = '▶',
+                        step_into = '⏎',
+                        step_over = '⏭',
+                        step_out = '⏮',
+                        step_back = 'b',
+                        run_last = '▶▶',
+                        terminate = '⏹',
+                        disconnect = '⏏',
+                    },
+                },
+            }
+
+            require("nvim-dap-virtual-text").setup {
+                enabled = true, enabled_commands = true,
+                highlight_changed_variables = true,
+                highlight_new_as_changed = false,
+                show_stop_reason = true,
+                commented = false,
+                only_first_definition = true,
+                all_references = false,
+                clear_on_continue = false,
+                display_callback = function(variable, buf, stackframe, node, options)
+                    if options.virt_text_pos == 'inline' then
+                        return ' = ' .. variable.value
+                    else
+                        return variable.name .. ' = ' .. variable.value
+                    end
                 end,
-        },
+                virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+
+                all_frames = false,
+                virt_lines = false,
+                virt_text_win_col = nil
+            }
+        end,
+    },
+    {
+        "nvim-dap-go",
+        for_cat = { cat = 'debug.go', default = false },
+        on_plugin = { "nvim-dap", },
+        after = function(plugin)
+            require("dap-go").setup()
+        end,
+    },
+    {
+        "nvim-dap-python",
+        for_cat = { cat = 'debug.python', default = false },
+        on_plugin = { "nvim-dap", },
+        after = function(plugin)
+            require("dap-python").setup("python")
+        end,
+    },
 }
