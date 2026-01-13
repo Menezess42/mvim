@@ -90,7 +90,22 @@ require('lze').load {
         for_cat = { cat = 'debug.python', default = false },
         on_plugin = { "nvim-dap", },
         after = function(plugin)
+            -- require("dap-python").setup("python")
             require("dap-python").setup("python")
+
+            local dap = require('dap')
+
+            -- Força o DAP a sempre executar da raiz do projeto
+            dap.configurations.python = {
+                {
+                    type = 'python',
+                    request = 'launch',
+                    name = 'Launch file',
+                    program = '${file}',
+                    console = 'integratedTerminal',
+                    cwd = vim.fn.getcwd(), -- Usa o diretório de trabalho do Neovim (raiz)
+                },
+            }
         end,
     },
 }
