@@ -54,7 +54,8 @@ require('lze').load {
             }
 
             require("nvim-dap-virtual-text").setup {
-                enabled = true, enabled_commands = true,
+                enabled = true,
+                enabled_commands = true,
                 highlight_changed_variables = true,
                 highlight_new_as_changed = false,
                 show_stop_reason = true,
@@ -85,25 +86,36 @@ require('lze').load {
             require("dap-go").setup()
         end,
     },
+    -- {
+    --     "nvim-dap-python",
+    --     for_cat = { cat = 'debug.python', default = false },
+    --     on_plugin = { "nvim-dap", },
+    --     after = function(plugin)
+    --         require("dap-python").setup()
+    --     end,
+    -- },
     {
         "nvim-dap-python",
         for_cat = { cat = 'debug.python', default = false },
         on_plugin = { "nvim-dap", },
         after = function(plugin)
-            -- require("dap-python").setup("python")
-            require("dap-python").setup("python")
+            require("dap-python").setup()
 
-            local dap = require('dap')
+            local dap = require("dap")
 
-            -- Força o DAP a sempre executar da raiz do projeto
             dap.configurations.python = {
                 {
-                    type = 'python',
-                    request = 'launch',
-                    name = 'Launch file',
-                    program = '${file}',
-                    console = 'integratedTerminal',
-                    cwd = vim.fn.getcwd(), -- Usa o diretório de trabalho do Neovim (raiz)
+                    type = "python",
+                    request = "launch",
+                    name = "Debug current file (project root)",
+                    program = "${file}",
+                    cwd = vim.fn.getcwd(),
+                    pythonPath = function()
+                        return vim.fn.exepath("python")
+                    end,
+                    env = {
+                        PYTHONPATH = vim.fn.getcwd(),
+                    },
                 },
             }
         end,
