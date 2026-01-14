@@ -150,13 +150,25 @@ require('lze').load {
           },
           lualine_x = {'filetype'},
         },
-        tabline = {
-          lualine_a = { 'buffers' },
-          lualine_z = { 'tabs' }
-        },
-      })
-    end,
-  },
+                tabline = {
+                    lualine_a = {
+                        {
+                            'buffers',
+                            show_filename_only = true,
+                            hide_filename_extension = false,
+                            max_length = vim.o.columns * 2 / 3,
+
+                            buffers_color = {
+                                active   = { fg = '#1c262e', bg = '#ebcb8b', gui = 'bold' },
+                                -- inactive = { fg = '#56636f', bg = '#2e3c48' },
+                            },
+                        },
+                    },
+                    lualine_z = { 'tabs' },
+                },
+            })
+        end,
+    },
   {
     "gitsigns.nvim",
     for_cat = 'general.always',
