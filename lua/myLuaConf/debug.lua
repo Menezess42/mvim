@@ -9,6 +9,7 @@ require('lze').load {
         { "<leader>b",  desc = "Debug: Toggle Breakpoint" },
         { "<leader>B",  desc = "Debug: Set Breakpoint" },
         { "<leader>dl", desc = "Debug: See last session result." },
+        { "<leader>dw", desc = "Debug: Add Watch expression." },
     },
         load = (require('nixCatsUtils').isNixCats and function(name)
             vim.cmd.packadd(name)
@@ -33,6 +34,10 @@ require('lze').load {
             end, { desc = 'Debug: Set Breakpoint' })
 
             vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
+
+            vim.keymap.set('n', '<leader>dw', function()
+                require('dapui').elements.watches.add()
+            end, { desc = 'Debug: Add watch expression' })
 
             dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 
@@ -86,14 +91,6 @@ require('lze').load {
             require("dap-go").setup()
         end,
     },
-    -- {
-    --     "nvim-dap-python",
-    --     for_cat = { cat = 'debug.python', default = false },
-    --     on_plugin = { "nvim-dap", },
-    --     after = function(plugin)
-    --         require("dap-python").setup()
-    --     end,
-    -- },
     {
         "nvim-dap-python",
         for_cat = { cat = 'debug.python', default = false },
