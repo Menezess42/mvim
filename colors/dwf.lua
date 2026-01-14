@@ -5,7 +5,7 @@ vim.g.colors_name = "dwf"
 
 local colors = {
   base00 = "#22303c", -- Fundo escuro (azul acinzentado)
- -- base00 = "#1c262e", -- Fundo escuro (azul acinzentado)
+  -- base00 = "#1c262e", -- Alternativa
 
   base01 = "#2e3c48", -- Status bars, barras laterais
   base02 = "#3b4a56", -- Elementos menos destacados
@@ -44,6 +44,11 @@ local highlight_groups = {
   Pmenu        = { fg = colors.base05, bg = colors.base01 },
   PmenuSel     = { fg = colors.base00, bg = colors.base04 },
   Search       = { fg = colors.base00, bg = colors.base0A },
+
+  -- Tabline
+  TabLine     = { fg = colors.base03, bg = colors.base01 },
+  TabLineSel  = { fg = colors.base07, bg = colors.base02, bold = true },
+  TabLineFill = { bg = colors.base01 },
 }
 
 for group, settings in pairs(highlight_groups) do
