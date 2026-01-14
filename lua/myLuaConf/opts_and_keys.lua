@@ -67,7 +67,7 @@ vim.keymap.set("n", "<leader><leader>k", "<cmd>bprev<CR>", { desc = 'Previous bu
 vim.keymap.set("n", "<leader><leader>l", "<cmd>bnext<CR>", { desc = 'Next buffer' })
 vim.keymap.set("n", "<leader><leader>[", "<cmd>b#<CR>", { desc = 'Last buffer' })
 vim.keymap.set("n", "<leader><leader>d", "<cmd>bdelete<CR>", { desc = 'delete buffer' })
-vim.keymap.set( "n", "<leader><leader>db", "<cmd>bdelete!<CR>", { desc = "delete buffer (force, without saving)" })
+vim.keymap.set( "n", "<leader><leader>dq", "<cmd>bdelete!<CR>", { desc = "delete buffer (force, without saving)" })
 
 vim.keymap.set({ "v", "x", "n" }, '<leader>c', '"+y', { noremap = true, silent = true, desc = 'Copy to clipboard' })
 vim.keymap.set({ "n", "v", "x" }, '<leader>C', '"+yy', { noremap = true, silent = true, desc = 'Copy line to clipboard' })

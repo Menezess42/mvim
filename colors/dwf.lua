@@ -47,7 +47,7 @@ local highlight_groups = {
 
   -- Tabline
   TabLine     = { fg = colors.base03, bg = colors.base01 },
-  TabLineSel  = { fg = colors.base07, bg = colors.base02, bold = true },
+  TabLineSel  = { fg = colors.base0A, bg = colors.base02, bold = true },
   TabLineFill = { bg = colors.base01 },
 }
 
