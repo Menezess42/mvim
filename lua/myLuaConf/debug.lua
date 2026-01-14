@@ -36,8 +36,22 @@ require('lze').load {
             vim.keymap.set('n', '<leader>dl', dapui.toggle, { desc = 'Debug: See last session result.' })
 
             vim.keymap.set('n', '<leader>dw', function()
-                require('dapui').elements.watches.add()
-            end, { desc = 'Debug: Add watch expression' })
+                local expr = vim.fn.expand('<cword>')
+                local watches = require('dapui').elements.watches
+
+                -- A API interna guarda as watches aqui
+                local state = require('dapui.state')
+                local existing = state.watches or {}
+
+                for i, w in ipairs(existing) do
+                    if w.expression == expr then
+                        watches.remove(i)
+                        return
+                    end
+                end
+
+                watches.add(expr)
+            end, { desc = 'Debug: Toggle watch expression' })
 
             dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 
