@@ -10,6 +10,7 @@ require('lze').load {
         { "<leader>B",  desc = "Debug: Set Breakpoint" },
         { "<leader>dl", desc = "Debug: See last session result." },
         { "<leader>dw", desc = "Debug: Add Watch expression." },
+        { "<leader>rw", desc = "Debug: Add Watch expression." },
     },
         load = (require('nixCatsUtils').isNixCats and function(name)
             vim.cmd.packadd(name)
@@ -38,13 +39,6 @@ require('lze').load {
             vim.keymap.set('n', '<leader>dw', function()
                 require('dapui').elements.watches.add()
             end, { desc = 'Debug: Add watch expression' })
-            vim.keymap.set('n', '<leader>dr', function()
-                local idx = tonumber(vim.fn.input('Remove watch #: '))
-                if not idx then
-                    return
-                end
-                require('dapui').elements.watches.remove(idx)
-            end, { desc = 'Debug: Remove watch expression' })
 
             dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 
