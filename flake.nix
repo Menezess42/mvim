@@ -204,7 +204,7 @@
           [ "debug" "default" ]
         ];
         go = [
-          [ "debug" "go" ] # yes it has to be a list of lists
+          [ "debug" "go" ]
         ];
       };
     };
