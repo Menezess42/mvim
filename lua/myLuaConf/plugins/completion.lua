@@ -85,10 +85,8 @@ return {
                             preselect = false,
                             auto_insert = false,
                         },
-                        accept = {
-                            auto_brackets = {
-                                enabled = false,
-                            },
+                        ghost_text = {
+                            enabled = false,
                         },
                     },
                     menu = {
