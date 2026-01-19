@@ -45,10 +45,9 @@ return {
         after = function(_)
             require("blink.cmp").setup({
                 keymap = {
-                    preset = 'super-tab',                     -- Usa Tab para navegar e aceitar
-                    ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-                    ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-                    ['<CR>'] = {},                     -- Desabilita Enter para aceitar
+                        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+                        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+                        ['<CR>'] = {},
                 },
                 cmdline = {
                     enabled = true,
