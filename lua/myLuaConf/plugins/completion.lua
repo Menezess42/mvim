@@ -47,6 +47,7 @@ return {
                 keymap = {
                         ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
                         ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+                        ['<CR>'] = {},
                 },
                 cmdline = {
                     enabled = true,
@@ -83,17 +84,7 @@ return {
                         selection = {
                             preselect = false,
                             auto_insert = false,
-                            always = false,
-
-                            implicit = false,
                         },
-                    },
-                    accept = {
-                        auto_insert = false,
-                        on_select = false,
-                    },
-                    ghost_text = {
-                        enabled = false,
                     },
                     menu = {
                         draw = {
