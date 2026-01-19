@@ -1,3 +1,4 @@
+vim.o.wildmenu = false
 require('myLuaConf.opts_and_keys')
 
 require("lze").register_handlers(require('nixCatsUtils.lzUtils').for_cat)
