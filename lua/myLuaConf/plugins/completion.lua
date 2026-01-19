@@ -84,10 +84,14 @@ return {
                         selection = {
                             preselect = false,
                             auto_insert = false,
+                            always = false,
                         },
-                        ghost_text = {
-                            enabled = false,
-                        },
+                    },
+                    accept = {
+                        auto_insert = false,
+                    },
+                    ghost_text = {
+                        enabled = false,
                     },
                     menu = {
                         draw = {
