@@ -82,8 +82,13 @@ return {
                 completion = {
                     list = {
                         selection = {
-                            preselect = true,
+                            preselect = false,
                             auto_insert = false,
+                        },
+                        accept = {
+                            auto_brackets = {
+                                enabled = false,
+                            },
                         },
                     },
                     menu = {
