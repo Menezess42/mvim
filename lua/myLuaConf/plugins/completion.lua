@@ -43,22 +43,23 @@ return {
         for_cat = "general.blink",
         event = "DeferredUIEnter",
         after = function(_)
+do
+    local blink = require("blink.cmp")
 
-            -- HACK: limpa seleção inicial do blink
-            do
-                local blink = require("blink.cmp")
+    local orig_show = blink.show
 
-                local orig_open = blink.open
-
-                blink.open = function(...)
-                    orig_open(...)
-                    vim.schedule(function()
-                        pcall(function()
-                            blink.list.select(nil)
-                        end)
-                    end)
-                end
-            end
+    blink.show = function(...)
+        orig_show(...)
+        vim.schedule(function()
+            pcall(function()
+                -- força índice inválido
+                blink.list.state.selected = nil
+                -- força redraw
+                blink.list.render()
+            end)
+        end)
+    end
+end
             require("blink.cmp").setup({
                 keymap = {
                         ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
