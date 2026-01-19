@@ -82,12 +82,13 @@ return {
                 completion = {
                     list = {
                         selection = {
-                            preselect = false,
-                            auto_insert = false,
-                            always = false,
-
-                            -- 🔴 ESSENCIAL
-                            implicit = false,
+                            -- preselect = false,
+                            -- auto_insert = false,
+                            -- always = false,
+                            --
+                            -- -- 🔴 ESSENCIAL
+                            -- implicit = false,
+                            mode = 'manual',
                         },
                     },
                     accept = {
