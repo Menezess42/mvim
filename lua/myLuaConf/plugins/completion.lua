@@ -85,10 +85,15 @@ return {
                             preselect = false,
                             auto_insert = false,
                             always = false,
+
+                            -- 🔴 ESSENCIAL
+                            implicit = false,
                         },
                     },
                     accept = {
                         auto_insert = false,
+                        -- 🔴 ESSENCIAL
+                        on_select = false,
                     },
                     ghost_text = {
                         enabled = false,
