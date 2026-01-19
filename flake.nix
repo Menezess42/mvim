@@ -119,6 +119,7 @@
             blink-cmp
             blink-compat
             colorful-menu-nvim
+                        nvim-cmp
           ];
                                         cmp = with pkgs.vimPlugins;[
                                                 nvim-cmp
