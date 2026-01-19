@@ -45,7 +45,7 @@ return {
         after = function(_)
             require("blink.cmp").setup({
                 keymap = {
-                        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+                        ['<Tab>'] = { 'move_next', 'snippet_forward', 'fallback' },
                         ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
                         ['<CR>'] = {},
                 },
@@ -82,18 +82,15 @@ return {
                 completion = {
                     list = {
                         selection = {
-                            -- preselect = false,
-                            -- auto_insert = false,
-                            -- always = false,
-                            --
-                            -- -- 🔴 ESSENCIAL
-                            -- implicit = false,
-                            mode = 'manual',
+                            preselect = false,
+                            auto_insert = false,
+                            always = false,
+
+                            implicit = false,
                         },
                     },
                     accept = {
                         auto_insert = false,
-                        -- 🔴 ESSENCIAL
                         on_select = false,
                     },
                     ghost_text = {
