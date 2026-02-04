@@ -23,7 +23,7 @@ vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.opt.scrolloff = 10
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Remove highlight da busca' })
 vim.o.mouse = 'a'
 vim.g.netrw_liststyle = 0
 vim.g.netrw_banner = 0
