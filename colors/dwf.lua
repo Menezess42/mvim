@@ -3,9 +3,9 @@ vim.cmd("syntax reset")
 vim.g.colors_name = "dwf"
 
 local colors = {
-  base00 = "#22303c",
+  base00 = "#22303C",
   base01 = "#1B263B",
-  base02 = "#22303C",
+  base02 = "#0D1B2A",
   base03 = "#415A77",
   base04 = "#6C7A89",
   base05 = "#E6D5B8",
