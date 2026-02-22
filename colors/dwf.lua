@@ -4,46 +4,58 @@ vim.g.colors_name = "dwf"
 
 local colors = {
   base00 = "#22303C",
-  base01 = "#1B263B",
-  base02 = "#0D1B2A",
+  base01 = "#3B4A56",
+  base02 = "#56636F",
   base03 = "#415A77",
   base04 = "#6C7A89",
   base05 = "#E6D5B8",
   base06 = "#CFC8B5",
   base07 = "#ECE6D8",
-  base08 = "#CC6E2E",
-  base09 = "#C79A2B",
-  base0A = "#DDAA33",
-  base0B = "#B68A3A",
-  base0C = "#CD7F32",
-  base0D = "#415A77",
-  base0E = "#B8860B",
-  base0F = "#A65A2E",
+
+  gold      = "#DDAA33",
+  gold_soft = "#C79A2B",
+  ochre     = "#B68A3A",
+  amber     = "#D4A017",
+  bronze    = "#CD7F32",
+  orange    = "#CC6E2E",
+
+  blue_var  = "#6C7A89",
+  blue_fn   = "#415A77",
+  blue_type = "#81A1C1",
 }
 
 local highlight_groups = {
   Normal       = { fg = colors.base05, bg = colors.base00 },
   Comment      = { fg = colors.base03, italic = true },
-  Constant     = { fg = colors.base0C },
-  String       = { fg = colors.base0B },
-  Function     = { fg = colors.base09 },
-  Keyword      = { fg = colors.base0A, bold = true },
-  Type         = { fg = colors.base0E },
-  Variable     = { fg = colors.base0D },
-  Error        = { fg = colors.base08, bg = colors.base00, bold = true },
-  Debug        = { fg = colors.base0F },
+
+  Constant     = { fg = colors.bronze },
+  String       = { fg = colors.ochre },
+  Function     = { fg = colors.gold_soft },
+  Keyword      = { fg = colors.gold, bold = true },
+  Type         = { fg = colors.amber },
+  Variable     = { fg = colors.blue_var },
+
+  Identifier   = { fg = colors.blue_var },
+
+  Error        = { fg = colors.orange, bg = colors.base00, bold = true },
+  Debug        = { fg = colors.orange },
+
   Cursor       = { fg = colors.base00, bg = colors.base06 },
   Visual       = { bg = colors.base01 },
+
   LineNr       = { fg = colors.base02 },
-  CursorLineNr = { fg = colors.base04, bold = true },
+  CursorLineNr = { fg = colors.gold, bold = true },
+
   StatusLine   = { fg = colors.base05, bg = colors.base01 },
   VertSplit    = { fg = colors.base02 },
+
   Pmenu        = { fg = colors.base05, bg = colors.base01 },
-  PmenuSel     = { fg = colors.base00, bg = colors.base0A },
-  Search       = { fg = colors.base00, bg = colors.base0A },
+  PmenuSel     = { fg = colors.base00, bg = colors.gold },
+
+  Search       = { fg = colors.base00, bg = colors.amber },
 
   TabLine     = { fg = colors.base03, bg = colors.base01 },
-  TabLineSel  = { fg = colors.base0A, bg = colors.base02, bold = true },
+  TabLineSel  = { fg = colors.gold, bg = colors.base02, bold = true },
   TabLineFill = { bg = colors.base01 },
 }
 
@@ -55,30 +67,27 @@ for group, settings in pairs(highlight_groups) do
   if settings.italic then command = command .. " gui=italic" end
   vim.cmd(command)
 end
--- -- My custom Neovim theme
 -- vim.cmd("highlight clear")
 -- vim.cmd("syntax reset")
 -- vim.g.colors_name = "dwf"
 --
 -- local colors = {
---   base00 = "#22303c", -- Fundo escuro (azul acinzentado)
---   -- base00 = "#1c262e", -- Alternativa
---
---   base01 = "#2e3c48", -- Status bars, barras laterais
---   base02 = "#3b4a56", -- Elementos menos destacados
---   base03 = "#56636f", -- Comentários (cinza médio)
---   base04 = "#81a1c1", -- Azul claro para destaque
---   base05 = "#d8dee9", -- Texto principal
---   base06 = "#e5e9f0", -- Branco suave
---   base07 = "#eceff4", -- Branco puro
---   base08 = "#bf616a", -- Palavras-chave / erros
---   base09 = "#d08770", -- Funções (laranja queimado)
---   base0A = "#ebcb8b", -- Tipos e avisos (amarelo suave)
---   base0B = "#a3be8c", -- Strings (verde suave)
---   base0C = "#88c0d0", -- Constantes, números
---   base0D = "#81a1c1", -- Variáveis
---   base0E = "#b48ead", -- Palavras-chave secundárias
---   base0F = "#5e81ac", -- Debug, logs
+--   base00 = "#22303C",
+--     base01 = "#3B4A56",
+--     base02 = "#56636F",
+--   base03 = "#415A77",
+--   base04 = "#6C7A89",
+--   base05 = "#E6D5B8",
+--   base06 = "#CFC8B5",
+--   base07 = "#ECE6D8",
+--   base08 = "#CC6E2E",
+--   base09 = "#C79A2B",
+--   base0A = "#DDAA33",
+--   base0B = "#B68A3A",
+--   base0C = "#CD7F32",
+--   base0D = "#415A77",
+--   base0E = "#B8860B",
+--   base0F = "#A65A2E",
 -- }
 --
 -- local highlight_groups = {
@@ -87,8 +96,8 @@ end
 --   Constant     = { fg = colors.base0C },
 --   String       = { fg = colors.base0B },
 --   Function     = { fg = colors.base09 },
---   Keyword      = { fg = colors.base08, bold = true },
---   Type         = { fg = colors.base0A },
+--   Keyword      = { fg = colors.base0A, bold = true },
+--   Type         = { fg = colors.base0E },
 --   Variable     = { fg = colors.base0D },
 --   Error        = { fg = colors.base08, bg = colors.base00, bold = true },
 --   Debug        = { fg = colors.base0F },
@@ -99,10 +108,9 @@ end
 --   StatusLine   = { fg = colors.base05, bg = colors.base01 },
 --   VertSplit    = { fg = colors.base02 },
 --   Pmenu        = { fg = colors.base05, bg = colors.base01 },
---   PmenuSel     = { fg = colors.base00, bg = colors.base04 },
+--   PmenuSel     = { fg = colors.base00, bg = colors.base0A },
 --   Search       = { fg = colors.base00, bg = colors.base0A },
 --
---   -- Tabline
 --   TabLine     = { fg = colors.base03, bg = colors.base01 },
 --   TabLineSel  = { fg = colors.base0A, bg = colors.base02, bold = true },
 --   TabLineFill = { bg = colors.base01 },
