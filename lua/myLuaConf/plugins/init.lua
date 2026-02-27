@@ -262,6 +262,9 @@ require('lze').load {
         event = "DeferredUIEnter",
         after = function (plugin)
             require('which-key').setup({
+                icons = {
+                    mappings = false,
+                }
             })
             require('which-key').add {
                 { "<leader><leader>", group = "buffer commands" },
