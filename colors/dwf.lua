@@ -1,67 +1,77 @@
 vim.cmd("highlight clear")
 vim.cmd("syntax reset")
-vim.g.colors_name = "dwarfforge_canon"
+vim.g.colors_name = "dwf"
 
 local colors = {
 
-    -- estrutura
-    bg     = "#22303C",
-    bg_alt = "#1B2630",
+    -- Structural Base
+    base00 = "#22303C",
+    base01 = "#1B263B",
+    base02 = "#2E3C48",
+    base03 = "#415A77",
+    base04 = "#6C7A89",
 
-    -- texto
-    fg     = "#E6EDF3",
-    fg_dim = "#6C7A89",
+    -- Mineral Neutral
+    base05 = "#E6D5B8",
+    base06 = "#CFC8B5",
+    base07 = "#ECE6D8",
 
-    -- forja
-    gold   = "#C79A2B",
+    -- Energy (industrial orange)
+    energy = "#CC6E2E",
+    energy_bright = "#F05A22",
 
-    -- dados
-    teal   = "#2EC4B6",
+    -- Tech highlight
+    tech = "#48C4F8",
+    tech_alt = "#00D2C3",
 
-    -- energia
-    orange = "#CC6E2E",
-
+    -- Mineral metallic accent
+    mineral = "#C28840",
 }
 
-local highlight = {
+local highlight_groups = {
 
-    Normal       = { fg = colors.fg, bg = colors.bg },
+    Normal       = { fg = colors.base05, bg = colors.base00 },
 
-    Comment      = { fg = colors.fg_dim, italic = true },
+    Comment      = { fg = colors.base03, italic = true },
 
-    Keyword      = { fg = colors.gold, bold = true },
+    Constant     = { fg = colors.tech },
+    String       = { fg = colors.tech_alt },
 
-    Function     = { fg = colors.gold },
+    Function     = { fg = colors.energy_bright, bold = true },
 
-    Type         = { fg = colors.gold },
+    Keyword      = { fg = colors.energy },
 
-    String       = { fg = colors.teal },
+    Type         = { fg = colors.tech },
 
-    Constant     = { fg = colors.teal },
+    Variable     = { fg = colors.base04 },
+    Identifier   = { fg = colors.base04 },
 
-    Identifier   = { fg = colors.fg },
+    Error        = { fg = colors.energy_bright, bg = colors.base01, bold = true },
 
-    Variable     = { fg = colors.fg },
+    Debug        = { fg = colors.energy },
 
-    Error        = { fg = colors.orange, bold = true },
+    Cursor       = { fg = colors.base00, bg = colors.base06 },
 
-    CursorLineNr = { fg = colors.gold, bold = true },
+    Visual       = { bg = colors.base01 },
 
-    LineNr       = { fg = colors.fg_dim },
+    LineNr       = { fg = colors.base02 },
+    CursorLineNr = { fg = colors.base04, bold = true },
 
-    Visual       = { bg = colors.bg_alt },
+    StatusLine   = { fg = colors.base05, bg = colors.base01 },
 
-    Search       = { fg = colors.bg, bg = colors.gold },
+    VertSplit    = { fg = colors.base02 },
 
-    StatusLine   = { fg = colors.fg, bg = colors.bg_alt },
+    Pmenu        = { fg = colors.base05, bg = colors.base01 },
+    PmenuSel     = { fg = colors.base00, bg = colors.base04 },
 
-    Pmenu        = { fg = colors.fg, bg = colors.bg_alt },
+    Search       = { fg = colors.base00, bg = colors.energy },
 
-    PmenuSel     = { fg = colors.bg, bg = colors.gold },
-
+    TabLine      = { fg = colors.base03, bg = colors.base01 },
+    TabLineSel   = { fg = colors.energy, bg = colors.base02, bold = true },
+    TabLineFill  = { bg = colors.base01 },
 }
 
-for group, settings in pairs(highlight) do
+for group, settings in pairs(highlight_groups) do
     local command = "highlight " .. group
     if settings.fg then command = command .. " guifg=" .. settings.fg end
     if settings.bg then command = command .. " guibg=" .. settings.bg end
@@ -69,98 +79,3 @@ for group, settings in pairs(highlight) do
     if settings.italic then command = command .. " gui=italic" end
     vim.cmd(command)
 end
-
--- vim.cmd("highlight clear")
--- vim.cmd("syntax reset")
--- vim.g.colors_name = "dwarfforge"
---
--- local colors = {
---
---     -- Estrutura (aço / night steel)
---     base00 = "#22303C",
---     base01 = "#1B2630",
---     base02 = "#2E3C48",
---     base03 = "#415A77",
---     base04 = "#6C7A89",
---
---     -- Texto (metal claro)
---     base05 = "#D8E1E8",
---     base06 = "#E6EDF3",
---     base07 = "#F2F6FA",
---
---     -- Energia / forja
---     base08 = "#CC6E2E", -- erro / alerta quente
---     base09 = "#D9772A", -- ação / destaque
---     base0A = "#C79A2B", -- dourado principal
---
---     -- Dados
---     base0B = "#2EC4B6", -- string / dados
---
---     -- Interface técnica
---     base0C = "#48C4F8", -- info / hint
---     base0D = "#5E81AC", -- identifiers
---
---     -- Tipos / estrutura
---     base0E = "#B68A3A",
---
---     -- Debug / raro
---     base0F = "#A65A2E",
--- }
---
--- local highlight_groups = {
---
---     Normal       = { fg = colors.base05, bg = colors.base00 },
---
---     Comment      = { fg = colors.base03, italic = true },
---
---     Constant     = { fg = colors.base0C },
---
---     String       = { fg = colors.base0B },
---
---     Function     = { fg = colors.base0A },
---
---     Keyword      = { fg = colors.base0A, bold = true },
---
---     Type         = { fg = colors.base0E },
---
---     Variable     = { fg = colors.base05 },
---
---     Identifier   = { fg = colors.base0D },
---
---     Error        = { fg = colors.base08, bg = colors.base01, bold = true },
---
---     Debug        = { fg = colors.base0F },
---
---     Cursor       = { fg = colors.base00, bg = colors.base06 },
---
---     Visual       = { bg = colors.base01 },
---
---     LineNr       = { fg = colors.base02 },
---
---     CursorLineNr = { fg = colors.base0A, bold = true },
---
---     StatusLine   = { fg = colors.base05, bg = colors.base01 },
---
---     VertSplit    = { fg = colors.base02 },
---
---     Pmenu        = { fg = colors.base05, bg = colors.base01 },
---
---     PmenuSel     = { fg = colors.base00, bg = colors.base0A },
---
---     Search       = { fg = colors.base00, bg = colors.base09 },
---
---     TabLine      = { fg = colors.base03, bg = colors.base01 },
---
---     TabLineSel   = { fg = colors.base0A, bg = colors.base02, bold = true },
---
---     TabLineFill  = { bg = colors.base01 },
--- }
---
--- for group, settings in pairs(highlight_groups) do
---     local command = "highlight " .. group
---     if settings.fg then command = command .. " guifg=" .. settings.fg end
---     if settings.bg then command = command .. " guibg=" .. settings.bg end
---     if settings.bold then command = command .. " gui=bold" end
---     if settings.italic then command = command .. " gui=italic" end
---     vim.cmd(command)
--- end
