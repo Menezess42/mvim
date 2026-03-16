@@ -1,51 +1,87 @@
 vim.cmd("highlight clear")
 vim.cmd("syntax reset")
-vim.g.colors_name = "dwf"
+vim.g.colors_name = "dwarfforge"
 
 local colors = {
-    base00 = "#22303C",
-    base01 = "#2E3C48",
-    base02 = "#3B4A56",
-    base03 = "#56636F",
-    base04 = "#6C7A89",
-    base05 = "#E6D5B8",
-    base06 = "#CFC8B5",
-    base07 = "#ECE6D8",
 
-    base08 = "#CC6E2E",
-    base09 = "#C28840",
-    base0A = "#DDAA33",
-    base0B = "#00d2c3",
-    base0C = "#48c4f8",
-    base0D = "#6C7A89",
+    -- Estrutura (aço / night steel)
+    base00 = "#22303C",
+    base01 = "#1B2630",
+    base02 = "#2E3C48",
+    base03 = "#415A77",
+    base04 = "#6C7A89",
+
+    -- Texto (metal claro)
+    base05 = "#D8E1E8",
+    base06 = "#E6EDF3",
+    base07 = "#F2F6FA",
+
+    -- Energia / forja
+    base08 = "#CC6E2E", -- erro / alerta quente
+    base09 = "#D9772A", -- ação / destaque
+    base0A = "#C79A2B", -- dourado principal
+
+    -- Dados
+    base0B = "#2EC4B6", -- string / dados
+
+    -- Interface técnica
+    base0C = "#48C4F8", -- info / hint
+    base0D = "#5E81AC", -- identifiers
+
+    -- Tipos / estrutura
     base0E = "#B68A3A",
-    base0F = "#CD7F32",
+
+    -- Debug / raro
+    base0F = "#A65A2E",
 }
 
 local highlight_groups = {
+
     Normal       = { fg = colors.base05, bg = colors.base00 },
+
     Comment      = { fg = colors.base03, italic = true },
+
     Constant     = { fg = colors.base0C },
+
     String       = { fg = colors.base0B },
-    Function     = { fg = colors.base09 },
+
+    Function     = { fg = colors.base0A },
+
     Keyword      = { fg = colors.base0A, bold = true },
+
     Type         = { fg = colors.base0E },
-    Variable     = { fg = colors.base0D },
+
+    Variable     = { fg = colors.base05 },
+
     Identifier   = { fg = colors.base0D },
-    Error = { fg = colors.base08, bg = colors.base01, bold = true },
+
+    Error        = { fg = colors.base08, bg = colors.base01, bold = true },
+
     Debug        = { fg = colors.base0F },
+
     Cursor       = { fg = colors.base00, bg = colors.base06 },
+
     Visual       = { bg = colors.base01 },
+
     LineNr       = { fg = colors.base02 },
-    CursorLineNr = { fg = colors.base04, bold = true },
+
+    CursorLineNr = { fg = colors.base0A, bold = true },
+
     StatusLine   = { fg = colors.base05, bg = colors.base01 },
+
     VertSplit    = { fg = colors.base02 },
+
     Pmenu        = { fg = colors.base05, bg = colors.base01 },
-    PmenuSel     = { fg = colors.base00, bg = colors.base04 },
-    Search       = { fg = colors.base00, bg = colors.base0A },
-    TabLine     = { fg = colors.base03, bg = colors.base01 },
-    TabLineSel  = { fg = colors.base0A, bg = colors.base02, bold = true },
-    TabLineFill = { bg = colors.base01 },
+
+    PmenuSel     = { fg = colors.base00, bg = colors.base0A },
+
+    Search       = { fg = colors.base00, bg = colors.base09 },
+
+    TabLine      = { fg = colors.base03, bg = colors.base01 },
+
+    TabLineSel   = { fg = colors.base0A, bg = colors.base02, bold = true },
+
+    TabLineFill  = { bg = colors.base01 },
 }
 
 for group, settings in pairs(highlight_groups) do

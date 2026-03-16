@@ -263,7 +263,8 @@ require('lze').load {
         after = function (plugin)
             require('which-key').setup({
                 icons = {
-                    mappings = false,
+                    mappings = true,
+                    keys = {},
                 }
             })
             require('which-key').add {
